@@ -11,9 +11,24 @@ use Illuminate\Support\Facades\Hash;
 
 class PlayerController extends Controller
 {
-    //Función encargada de registrar un nuevo usuario
 
-    public function registerPlayer(Request $request){
+    // Buscamos el nombre del jugador
+
+    public function playerName($nickName) {
+
+        try {
+
+            return Player::all() -> where(['nickName', '=', $nickName]) -> makeHidden(['password']) -> keyBy('id');
+
+        } catch(QueryException $error) {
+            return $error;
+        }
+    }
+
+     //Función encargada de registrar un nuevo usuario
+
+    public function registerPlayer(Request $request) {
+
         $nickName = $request -> input('nickName');
         $password = $request -> input('password');
         $email = $request -> input('email');
@@ -41,6 +56,8 @@ class PlayerController extends Controller
             }
         }
     }
+
+    // Modificamos los atributos del Player
 
     public function modifyPlayer(Request $request) {
 

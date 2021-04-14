@@ -12,6 +12,6 @@ class Player extends Model
     protected $fillable = ['nickName', 'password', 'email'];
 
     public function playerParty() {
-        return $this -> belongsTo('App/Models/Party/', 'idplayer');
+        return $this -> belongsTo('App\Models\Party', 'idplayer');
     }
 }
