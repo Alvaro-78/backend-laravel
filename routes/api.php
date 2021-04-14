@@ -2,18 +2,14 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controller\PlayerController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| is assigned the "api" middleware group. Enjoy building your API!
-|
-*/
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+// Rutas controladoras de player
+
+Route::get('/player/{nickName}', [PlayerController::class, 'playerName']);
+Route::post('/player', [PlayerController::class, 'registerPlayer']);
+Route::put('/player', [PlayerController::class, 'modifyPlayer']);
+
+
