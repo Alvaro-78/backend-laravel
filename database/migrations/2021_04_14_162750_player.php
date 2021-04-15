@@ -14,7 +14,6 @@ class Player extends Migration
     public function up()
     {
         Schema::create('players', function(Blueprint $table) {
-
             $table -> bigIncrements('id');
             $table -> string('nickName') -> unique();
             $table -> string('password');
