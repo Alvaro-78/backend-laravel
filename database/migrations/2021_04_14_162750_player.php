@@ -18,6 +18,7 @@ class Player extends Migration
             $table -> string('nickName') -> unique();
             $table -> string('password');
             $table -> string('email') -> unique();
+            $table->string('token')->nullable();
             $table -> timestamps();
         });
     }
