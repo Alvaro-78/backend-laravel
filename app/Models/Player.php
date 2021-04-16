@@ -9,9 +9,13 @@ class Player extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nickName', 'password', 'email'];
+    protected $fillable = ['nickName', 'password', 'email', 'token'];
 
     public function playerParty() {
-        return $this -> belongsTo('App\Models\Party', 'idplayer');
+        return $this -> hasMany('App\Models\Party', 'idplayer');
+    }
+
+    public function playerMessage() {
+        return $this -> hasMany('App\Models\Message', 'idplayer');
     }
 }
