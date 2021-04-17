@@ -13,10 +13,16 @@ class CreateMessage extends Migration
      */
     public function up()
     {
-        Schema::create('message', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('text');
+            $table->date('date');
             $table->timestamps();
+            $table->unsignedBigInteger('idplayer');
+            $table->foreign('idplayer', 'fk_messages_players')
+            ->on('players')
+            ->references('id')
+            ->onDelete('restrict');
         });
     }
 
@@ -27,6 +33,6 @@ class CreateMessage extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('message');
+        Schema::dropIfExists('messages');
     }
 }

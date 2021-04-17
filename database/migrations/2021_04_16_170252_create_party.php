@@ -13,9 +13,19 @@ class CreateParty extends Migration
      */
     public function up()
     {
-        Schema::create('party', function (Blueprint $table) {
+        Schema::create('parties', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('partyName');
+            $table->string('partyName')->unique();
+            $table->unsignedBigInteger('idgame');
+            $table->foreign('idgame', 'fk_parties_games')
+            ->on('games')
+            ->references('id')
+            ->onDelete('restrict');
+            $table->unsignedBigInteger('idmessage');
+            $table->foreign('idmessage', 'fk_parties_messages')
+            ->on('messages')
+            ->references('id')
+            ->onDelete('restrict');
             $table->timestamps();
         });
     }
@@ -27,6 +37,6 @@ class CreateParty extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('party');
+        Schema::dropIfExists('parties');
     }
 }
