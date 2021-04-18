@@ -16,6 +16,23 @@ class GameController extends Controller
         try {
             return Game::create(['gameName' => $gameName]);
         } catch (QueryException $error) {
+            
+            $eCode = $error -> errorInfo[1];
+
+            if($eCode == 1062) {
+                return response()-> json([
+                    'error' => "Juego ya creado anteriormente"
+                ]);
+            }
+        }
+    }
+
+    public function allGames(){
+
+        try{
+            return Game::all();
+
+        }catch(QueryException $error){
             return $error;
         }
     }

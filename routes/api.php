@@ -15,8 +15,14 @@ Route::post('/player', [PlayerController::class, 'registerPlayer']);
 Route::post('/player/login', [PlayerController::class, 'loginPlayer']);
 Route::post('/player/logout', [PlayerController::class, 'logOutPlayer']);
 Route::put('/player', [PlayerController::class, 'modifyPlayer']);
+
+
 Route::post('/party', [PlayerController::class, 'createParty']);
+
+
 Route::post('/game', [GameController::class, 'createGame']);
+Route::get('/game', [GameController::class, 'allGames']);
+
 
 
 

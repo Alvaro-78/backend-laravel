@@ -9,7 +9,7 @@ class Game extends Model
 {
     use HasFactory;
 
-    protected $fillable = 'gameName';
+    protected $fillable = ['gameName'];
 
     public function gameParty() {
         return $this -> hasMany('App\Models\Party', 'idgame');
