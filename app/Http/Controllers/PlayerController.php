@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Hash;
 class PlayerController extends Controller
 {
 
-    
     //Login
 
     public function loginPlayer(Request $request){
@@ -146,28 +145,5 @@ class PlayerController extends Controller
             return $error;
         }
     }
-
-    //Crear party
-    
-    public function createParty(Request $request){
-
-        $partyName = $request->input('partyName');
-        $idplayer = $request->input('idplayer');
-        $idgame = $request->input('idgame');
-        $idmessage = $request->input('idmessage');
-
-        try{
-
-            return Party::create([
-                'partyName' => $partyName,
-                'idplayer' => $idplayer,
-                'idgame' => $idgame,
-                'idmessage' => $idmessage
-            ]);
-        }catch(QueryException $error) {
-            return $error;
-        }
-    }
-
 
 }
