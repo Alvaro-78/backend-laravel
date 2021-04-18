@@ -11,8 +11,8 @@ class Player extends Model
 
     protected $fillable = ['nickName', 'password', 'email', 'token'];
 
-    public function playerParty() {
-        return $this -> hasMany('App\Models\Party', 'idplayer');
+    public function playerMembership() {
+        return $this -> hasMany('App\Models\Membership', 'idplayer');
     }
 
     public function playerMessage() {

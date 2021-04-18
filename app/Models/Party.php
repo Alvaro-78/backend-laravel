@@ -15,8 +15,8 @@ class Party extends Model
         return $this -> hasMany('App\Models\Message', 'idparty');
     }
 
-    public function partyPlayer() {
-        return $this -> hasMany('App\Models\Player', 'idparty');
+    public function partyMembership() {
+        return $this -> hasMany('App\Models\Membership', 'idparty');
     }
 
     public function partyGame() {
