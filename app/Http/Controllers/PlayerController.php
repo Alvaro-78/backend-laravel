@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Player;
-use App\Models\Party;
+
 use Illuminate\Database\QueryException;
 
 use Illuminate\Support\Facades\Hash;
@@ -138,33 +138,14 @@ class PlayerController extends Controller
         $password = $request -> input('password');
         $email = $request -> input('email');
 
+        //Hasheamos el password
+        $password = Hash::make($password);
+
         try {
 
             return Player::where('nickName', '=', $nickName) -> update(['password' => $password]);
             
         } catch (QueryException $error) {
-            return $error;
-        }
-    }
-
-    //Crear party
-    
-    public function createParty(Request $request){
-
-        $partyName = $request->input('partyName');
-        $idplayer = $request->input('idplayer');
-        $idgame = $request->input('idgame');
-        $idmessage = $request->input('idmessage');
-
-        try{
-
-            return Party::create([
-                'partyName' => $partyName,
-                'idplayer' => $idplayer,
-                'idgame' => $idgame,
-                'idmessage' => $idmessage
-            ]);
-        }catch(QueryException $error) {
             return $error;
         }
     }
