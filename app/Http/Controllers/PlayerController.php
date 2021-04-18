@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Hash;
 class PlayerController extends Controller
 {
 
-    
     //Login
 
     public function loginPlayer(Request $request){
@@ -149,6 +148,5 @@ class PlayerController extends Controller
             return $error;
         }
     }
-
 
 }
