@@ -97,6 +97,18 @@ class PlayerController extends Controller
         }
     }
 
+    // Buscamos todos los jugadores
+
+    public function allPlayers(){
+
+        try{
+            return Player::all();
+
+        }catch(QueryException $error){
+            return $error;
+        }
+    }
+
      //Función encargada de registrar un nuevo usuario
 
     public function registerPlayer(Request $request) {
