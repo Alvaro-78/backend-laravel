@@ -148,6 +148,7 @@ class PlayerController extends Controller
     }
 
     //Crear party
+    
     public function createParty(Request $request){
 
         $partyName = $request->input('partyName');
