@@ -86,15 +86,13 @@ class PlayerController extends Controller
     
     // Buscamos el nombre del jugador
 
-    public function playerName($nickName) {
+    public function searchPlayer($nickName){
 
-        try {
-
-            return Player::all() -> where(['nickName', '=', $nickName]) -> makeHidden(['password']) -> keyBy('id');
-
-        } catch(QueryException $error) {
-            return $error;
-        }
+        return Player::selectRaw('players.id, players.nickName')
+        // ->join('games', 'games.id', '=', 'parties.id')
+        ->where('players.nickName', 'LIKE', $nickName)
+        ->get();
+  
     }
 
     // Buscamos todos los jugadores

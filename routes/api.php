@@ -11,7 +11,7 @@ use App\Http\Controllers\GameController;
 
 // Rutas controladoras de player
 
-Route::get('/player/{nickName}', [PlayerController::class, 'playerName']);
+Route::get('/player/{nickName}', [PlayerController::class, 'searchPlayer']);
 Route::get('/player', [PlayerController::class, 'allPlayers']);
 Route::post('/player', [PlayerController::class, 'registerPlayer']);
 Route::post('/player/login', [PlayerController::class, 'loginPlayer']);
@@ -20,6 +20,7 @@ Route::put('/player', [PlayerController::class, 'modifyPlayer']);
 
 //Rutas controladoras de party
 Route::post('/party', [PartyController::class, 'createParty']);
+Route::delete('/party/id', [PartyController::class, 'deleteParty']);
 
 //Rutas controladoras de game
 Route::post('/game', [GameController::class, 'createGame']);
