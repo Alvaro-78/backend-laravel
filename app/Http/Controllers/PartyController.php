@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use App\Models\Party;
 
+
 class PartyController extends Controller
 {
     //Crear party
@@ -26,6 +27,17 @@ class PartyController extends Controller
         }catch(QueryException $error) {
             return $error;
         }
+    }
+    
+    public function deleteParty(Request $request){
+        $idPartyDelete = $request->input('id');
+        try {
+            return Party::where ('id', '=', $idPartyDelete)
+            ->delete();
+        } catch(QueryException $error){
+            return $error;
+        }
+        
     }
     
 }

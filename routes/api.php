@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\PartyController;
 use App\Http\Controllers\GameController;
 
 
@@ -18,7 +19,7 @@ Route::post('/player/logout', [PlayerController::class, 'logOutPlayer']);
 Route::put('/player', [PlayerController::class, 'modifyPlayer']);
 
 //Rutas controladoras de party
-Route::post('/party', [PlayerController::class, 'createParty']);
+Route::post('/party', [PartyController::class, 'createParty']);
 
 //Rutas controladoras de game
 Route::post('/game', [GameController::class, 'createGame']);
