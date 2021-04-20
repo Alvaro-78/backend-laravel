@@ -9,7 +9,11 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $fillable = 'text';
+    protected $fillable = [
+        'text',
+        'idparty',
+        'idplayer'
+    ];
 
     public function messagePlayer() {
         return $this -> belongsTo('App\Models\Player', 'idplayer', 'id');
