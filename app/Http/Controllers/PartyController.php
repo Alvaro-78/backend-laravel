@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use App\Models\Party;
+use App\Models\Membership;
 
 
 class PartyController extends Controller
@@ -42,7 +43,7 @@ class PartyController extends Controller
 
     // Buscamos parties según el juego
 
-    public function searchPartyGameName($gameName){
+    public function searchPartyGameName($gameName) {
 
         return Party::selectRaw('parties.id, games.id AS idgame, games.gameName')
         ->join('games', 'games.id', '=', 'parties.id')
@@ -51,7 +52,35 @@ class PartyController extends Controller
   
     }
     
+    // Entrar en partyName
     
+    public function joinParty(Request $request) {
 
-    
+        $idplayer = $request -> input('idplayer');
+        $idparty = $request -> input('idparty');
+
+        try {
+
+            return Membership::create([
+                'idplayer' => $idplayer,
+                'idparty' => $idparty
+            ]);
+        } catch (queryException $error) {
+            return $error;
+        }
+    }
+
+    // Salir de una partyName
+
+    public function leaveParty($id) {
+
+        $member = Membership::find($id);
+        
+        try {
+
+            return $member -> delete();
+        } catch (queryException $error) {
+            return $error;
+        }
+    }
 }
