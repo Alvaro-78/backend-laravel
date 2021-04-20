@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlayerController;
 use App\Http\Controllers\PartyController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\MessageController;
 
 
 
@@ -22,14 +23,16 @@ Route::put('/player', [PlayerController::class, 'modifyPlayer']);
 Route::post('/party', [PartyController::class, 'createParty']);
 Route::delete('/party/id', [PartyController::class, 'deleteParty']);
 Route::get('/party/{gameName}', [PartyController::class, 'searchPartyGameName']);
-
+Route::post('/party/join', [PartyController::class, 'joinParty']);
+Route::delete('/party/leave/{id}', [PartyController::class, 'leaveParty']);
 
 //Rutas controladoras de game
 Route::post('/game', [GameController::class, 'createGame']);
 Route::get('/game', [GameController::class, 'allGames']);
 
-
-
-
+//Rutas controladoras de message
+Route::post('/message', [MessageController::class, 'sendMessage']);
+Route::get('/message/{id}', [MessageController::class, 'indexAllMessage']);
+Route::delete('/message/{id}/{idplayer}', [MessageController::class, 'deleteMessage']);
 
 
