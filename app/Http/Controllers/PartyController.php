@@ -39,5 +39,19 @@ class PartyController extends Controller
         }
         
     }
+
+    // Buscamos parties según el juego
+
+    public function searchPartyGameName($gameName){
+
+        return Party::selectRaw('parties.id, games.id AS idgame, games.gameName')
+        ->join('games', 'games.id', '=', 'parties.id')
+        ->where('games.gameName', 'LIKE', $gameName)
+        ->get();
+  
+    }
+    
+    
+
     
 }

@@ -9,6 +9,11 @@ class Membership extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'idparty',
+        'idplayer'
+    ];
+
     public function membershipParty(){
 
         return $this->belongsTo('App\Models\Party', 'idparty', 'id');

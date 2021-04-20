@@ -21,6 +21,8 @@ Route::put('/player', [PlayerController::class, 'modifyPlayer']);
 //Rutas controladoras de party
 Route::post('/party', [PartyController::class, 'createParty']);
 Route::delete('/party/id', [PartyController::class, 'deleteParty']);
+Route::get('/party/{gameName}', [PartyController::class, 'searchPartyGameName']);
+
 
 //Rutas controladoras de game
 Route::post('/game', [GameController::class, 'createGame']);

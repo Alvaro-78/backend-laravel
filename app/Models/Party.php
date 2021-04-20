@@ -23,5 +23,7 @@ class Party extends Model
         return $this -> belongsTo('App\Models\Game', 'idgame', 'id');
     }
 
+    
+
 
 }
