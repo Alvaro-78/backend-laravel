@@ -12,16 +12,16 @@ class MessageController extends Controller
 
     public function sendMessage(Request $request) {
 
+        $text = $request -> input('text');
         $idplayer = $request -> input('idplayer');
         $idparty = $request -> input('idparty');
-        $text = $request -> input('text');
 
         try {
 
             return Message::create([
+                'text' => $text,
                 'idplayer' => $idplayer,
-                'idparty' => $idparty,
-                'idtext' => $text
+                'idparty' => $idparty
             ]);
         } catch (QueryException $error) {
 
