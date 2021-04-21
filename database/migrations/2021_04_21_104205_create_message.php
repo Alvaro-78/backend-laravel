@@ -14,15 +14,15 @@ class CreateMessage extends Migration
     public function up()
     {
         
-        Schema::create('message', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('text');
-            $table->unsignedBigInteger('idplayer');
+            $table->unsignedBigInteger('idplayer') -> nullable();
             $table->foreign('idplayer', 'fk_messages_players')
             ->on('players')
             ->references('id')
             ->onDelete('restrict');
-            $table->unsignedBigInteger('idparty');
+            $table->unsignedBigInteger('idparty') -> nullable();
             $table->foreign('idparty', 'fk_messages_parties')
             ->on('parties')
             ->references('id')
@@ -38,6 +38,6 @@ class CreateMessage extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('message');
+        Schema::dropIfExists('messages');
     }
 }
