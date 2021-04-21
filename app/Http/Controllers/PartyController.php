@@ -30,12 +30,16 @@ class PartyController extends Controller
         }
     }
     
-    public function deleteParty(Request $request){
-        $idPartyDelete = $request->input('id');
+    public function deleteParty($id) {
+        
+        $idPartyDelete = Party::find($id);
+
         try {
-            return Party::where ('id', '=', $idPartyDelete)
-            ->delete();
+
+            return $idPartyDelete -> delete();
+
         } catch(QueryException $error){
+            
             return $error;
         }
         
@@ -50,6 +54,18 @@ class PartyController extends Controller
         ->where('games.gameName', 'LIKE', $gameName)
         ->get();
   
+    }
+
+    // Buscamos todas las parties
+
+    public function searchAllParty() {
+
+        try{
+            return Party::all();
+
+        }catch(QueryException $error){
+            return $error;
+        }
     }
     
     // Entrar en partyName
@@ -79,7 +95,9 @@ class PartyController extends Controller
         try {
 
             return $member -> delete();
+
         } catch (queryException $error) {
+
             return $error;
         }
     }
