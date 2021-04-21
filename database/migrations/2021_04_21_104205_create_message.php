@@ -13,10 +13,10 @@ class CreateMessage extends Migration
      */
     public function up()
     {
-        Schema::create('messages', function (Blueprint $table) {
+        
+        Schema::create('message', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('text');
-            $table->timestamps();
             $table->unsignedBigInteger('idplayer');
             $table->foreign('idplayer', 'fk_messages_players')
             ->on('players')
@@ -27,6 +27,7 @@ class CreateMessage extends Migration
             ->on('parties')
             ->references('id')
             ->onDelete('restrict');
+            $table->timestamps();
         });
     }
 
@@ -37,6 +38,6 @@ class CreateMessage extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('messages');
+        Schema::dropIfExists('message');
     }
 }
